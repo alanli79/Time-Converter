@@ -10,17 +10,5 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp" >
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Time Zone Converter"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:padding="16dp" />
 </androidx.core.widget.NestedScrollView>
