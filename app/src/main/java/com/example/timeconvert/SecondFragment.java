@@ -50,13 +50,16 @@ public class SecondFragment extends Fragment {
             }
         });
         ArrayList<String> locations = new ArrayList<>();
-        locations.add("US");
-        locations.add("China");
-        locations.add("Canada");
-        locations.add("Mexico");
+        locations.add("America/New_York");
+        locations.add("America/Los_Angeles");
+        locations.add("Europe/Berlin");
+        locations.add("Europe/Istanbul");
+        locations.add("Asia/Singapore");
+        locations.add("Asia/Tokyo");
+        locations.add("Australia/Canberra");
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, locations);
-        adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
+        adapter.setDropDownViewResource(android.R.layout.select_dialog_item);
         spinner_locations.setAdapter(adapter);
 
     }

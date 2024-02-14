@@ -32,23 +32,26 @@
             android:layout_width="376dp"
             android:layout_height="125dp"
             android:background="@drawable/rectangle"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="101dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
             android:text="Home Time Zone"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="117dp" />
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/currentTimeBack"
+            app:layout_constraintTop_toTopOf="@+id/currentTimeBack" />
 
         <Spinner
             android:id="@+id/spinner_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="44dp"
+            android:layout_marginBottom="24dp"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
