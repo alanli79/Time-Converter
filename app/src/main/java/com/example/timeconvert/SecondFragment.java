@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -17,7 +18,7 @@ import com.example.timeconvert.databinding.FragmentSecondBinding;
 
 import java.util.ArrayList;
 
-public class SecondFragment extends Fragment {
+public class SecondFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private FragmentSecondBinding binding;
     private Spinner spinner_locations;
@@ -70,4 +71,16 @@ public class SecondFragment extends Fragment {
         binding = null;
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (parent.getId() == R.id.spinner_location) {
+            String value = parent.getItemAtPosition(position).toString();
+
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }
