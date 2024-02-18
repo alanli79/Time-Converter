@@ -117,7 +117,7 @@
             app:layout_constraintTop_toTopOf="@+id/convertedTimeBack" />
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/convertButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -139,15 +139,27 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:contentDescription="@string/Settings"/>
 
+        <Spinner
+            android:id="@+id/spinner_location"
+            android:layout_width="343dp"
+            android:layout_height="52dp"
+
+            android:layout_marginTop="44dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.583"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/currentTimeBack" />
+
         <TextView
             android:id="@+id/homeTimeZone"
             android:layout_width="315dp"
             android:layout_height="41dp"
-            android:layout_marginBottom="32dp"
-            android:textSize="18sp"
+            android:layout_marginBottom="40dp"
+            android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="@+id/homeTimeBack"
             app:layout_constraintEnd_toEndOf="@+id/homeTimeBack"
-            app:layout_constraintHorizontal_bias="0.512"
+            app:layout_constraintHorizontal_bias="0.524"
             app:layout_constraintStart_toStartOf="@+id/homeTimeBack" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
