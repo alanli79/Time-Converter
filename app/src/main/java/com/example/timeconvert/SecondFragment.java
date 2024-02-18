@@ -20,15 +20,14 @@ import com.example.timeconvert.databinding.FragmentSecondBinding;
 
 import java.util.ArrayList;
 
-public class SecondFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+public class SecondFragment extends Fragment {
 
     private FragmentSecondBinding binding;
-    private Spinner spinner_locations;
-
     private EditText userInputEditText;
-    private Button saveButton;
+    private Spinner spinner;
     private static final String PREFS_NAME = "MyPrefs";
-    private static final String KEY_USER_TEXT = "HomeCity";
+    private static final String USER_HOME_CITY = "HomeCity";
+    private static final String USER_HOME_TIME = "HomeTimeZone";
 
 
     @Override
@@ -44,20 +43,18 @@ public class SecondFragment extends Fragment implements AdapterView.OnItemSelect
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        spinner_locations = getView().findViewById(R.id.spinner_location);
-        spinner_locations.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+        spinner = getView().findViewById(R.id.spinner_location);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
                 Toast.makeText(getContext(), "Selected Item: "+item, Toast.LENGTH_SHORT).show();
-
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
+
         ArrayList<String> locations = new ArrayList<>();
         locations.add("America/New_York");
         locations.add("America/Los_Angeles");
@@ -69,10 +66,12 @@ public class SecondFragment extends Fragment implements AdapterView.OnItemSelect
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, locations);
         adapter.setDropDownViewResource(android.R.layout.select_dialog_item);
-        spinner_locations.setAdapter(adapter);
+        spinner.setAdapter(adapter);
 
-        saveButton = getView().findViewById(R.id.save_button);
+        Button saveButton = getView().findViewById(R.id.save_button);
         userInputEditText = getView().findViewById(R.id.home_city_input);
+
+
         loadUserText();
 
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -87,14 +86,29 @@ public class SecondFragment extends Fragment implements AdapterView.OnItemSelect
 
     }
 
+    private void loadUserText() {
+        // Load previously saved text from SharedPreferences
+        SharedPreferences preferences = requireActivity().getSharedPreferences(PREFS_NAME, 0);
+        String home_city = preferences.getString(USER_HOME_CITY, "");
+        String home_time = preferences.getString(USER_HOME_TIME, "");
+        if (home_city.isEmpty()) {
+            home_city = "Baltimore";
+        }
+        userInputEditText.setText(home_city);
+    }
+
     private void saveUserData() {
         // Get user input from the EditText
         String userInput = userInputEditText.getText().toString();
+        String userTimeZone = spinner.getSelectedItem().toString();
 
-        // Save edit text input permanently
+        // Save edit text input
         SharedPreferences preferences = requireActivity().getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(KEY_USER_TEXT, userInput);
+        editor.putString(USER_HOME_CITY, userInput);
+        editor.apply();
+        // Save spinner input
+        editor.putString(USER_HOME_TIME, userTimeZone);
         editor.apply();
 
         Toast.makeText(requireContext(), "Saved!", Toast.LENGTH_SHORT).show();
@@ -104,30 +118,5 @@ public class SecondFragment extends Fragment implements AdapterView.OnItemSelect
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if (parent.getId() == R.id.spinner_location) {
-            String value = parent.getItemAtPosition(position).toString();
-            SharedPreferences.Editor editor = this.getContext().getSharedPreferences("MyPref", 0).edit();
-            editor.putString("userInputKey", value);
-        }
-    }
-
-    private void loadUserText() {
-        // Load previously saved text from SharedPreferences
-        SharedPreferences preferences = requireActivity().getSharedPreferences(PREFS_NAME, 0);
-        String savedUserText = preferences.getString(KEY_USER_TEXT, "");
-
-        if (savedUserText.isEmpty()) {
-            userInputEditText.setText("Baltimore");
-        } else {// Display the loaded text in the EditText
-            userInputEditText.setText(savedUserText);
-        }
-    }
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
     }
 }

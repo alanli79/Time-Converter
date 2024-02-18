@@ -11,4 +11,5 @@
     <string name="home_time_zone">\n      Home Time Zone</string>
     <string name="save_button">save</string>
     <string name="home_city_text_edit">Enter home city</string>
+    <string name="baltimore">baltimore</string>
 </resources>
