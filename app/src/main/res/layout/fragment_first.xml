@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="250dp"
-            android:text="Original Time"
+            android:text="@string/original_time"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/originalTimeBack"
             app:layout_constraintStart_toStartOf="@+id/originalTimeBack"
