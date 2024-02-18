@@ -28,62 +28,64 @@
             app:layout_constraintVertical_bias="0.065" />
 
         <TextView
-            android:id="@+id/currentTimeBack"
+            android:id="@+id/homeTimeZone"
             android:layout_width="376dp"
             android:layout_height="125dp"
+            android:layout_marginTop="28dp"
             android:background="@drawable/rectangle"
+            android:text="@string/home_time_zone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="101dp" />
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <TextView
-            android:id="@+id/currentTimeBack"
-            android:layout_width="376dp"
-            android:layout_height="125dp"
+            android:id="@+id/HomeCity"
+            android:layout_width="368dp"
+            android:layout_height="91dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/rectangle"
+            android:text="@string/home_city"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="101dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="20dp"
-            android:text="Home Time Zone"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@+id/currentTimeBack"
-            app:layout_constraintTop_toTopOf="@+id/currentTimeBack" />
+            app:layout_constraintTop_toBottomOf="@+id/homeTimeZone" />
 
         <Spinner
             android:id="@+id/spinner_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="424dp"
-            android:background="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.161"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_width="343dp"
+            android:layout_height="52dp"
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Save"
+            android:layout_marginTop="40dp"
+
+            android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="564dp" />
+            app:layout_constraintTop_toTopOf="@+id/homeTimeZone" />
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="@string/save_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/HomeCity" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:background="@color/white"
-            android:hint="Enter home city"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="271dp" />
+            android:id="@+id/home_city_input"
+            android:layout_width="285dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="20dp"
+            android:hint="@string/home_city_text_edit"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.191"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/HomeCity" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
