@@ -162,5 +162,16 @@
             app:layout_constraintHorizontal_bias="0.524"
             app:layout_constraintStart_toStartOf="@+id/homeTimeBack" />
 
+        <TextView
+            android:id="@+id/convertedTime"
+            android:layout_width="195dp"
+            android:layout_height="43dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/convertedTimeBack"
+            app:layout_constraintEnd_toEndOf="@+id/convertedTimeBack"
+            app:layout_constraintHorizontal_bias="0.508"
+            app:layout_constraintStart_toStartOf="@+id/convertedTimeBack" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

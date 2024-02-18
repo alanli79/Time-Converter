@@ -100,9 +100,30 @@ public class FirstFragment extends Fragment {
         String home = preferences.getString(USER_HOME_TIME, "");
         //get time difference
         int current_offset = Integer.parseInt(current.substring(current.length()-6, current.length()-3));
-        Toast.makeText(requireContext(), current_offset, Toast.LENGTH_SHORT).show();
+        int home_offset = Integer.parseInt(home.substring(current.length()-6, current.length()-3));
+        int offset = home_offset - current_offset;
 
+        //TODO: get original time from time selector
+        //get original time
+        int hour = 12;
+        int minute = 45;
+        boolean pastMidnight = false; //false is AM, true is PM
 
+        //calculate new time
+        hour += offset;
+        if (hour < 0) {
+            pastMidnight = !pastMidnight;
+            hour += 12;
+        } else if (hour + offset > 12) {
+            pastMidnight = !pastMidnight;
+            hour -= 12;
+        }
+
+        //display converted time
+        String isDay = (pastMidnight) ? "PM" : "AM";
+        String new_time = hour + " : " + minute + " " + isDay;
+        TextView textView = getView().findViewById(R.id.convertedTime);
+        textView.setText(new_time);
     }
 
     @Override
