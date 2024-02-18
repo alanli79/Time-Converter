@@ -133,17 +133,17 @@
             android:id="@+id/settingsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:background="#000000"
+            android:contentDescription="@string/Settings"
             android:src="@drawable/settings_23_48"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:contentDescription="@string/Settings"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <Spinner
             android:id="@+id/spinner_location"
-            android:layout_width="343dp"
-            android:layout_height="52dp"
-
+            android:layout_width="315dp"
+            android:layout_height="41dp"
             android:layout_marginTop="44dp"
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -168,10 +168,57 @@
             android:layout_height="43dp"
             android:layout_marginBottom="16dp"
             android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/convertedTimeBack"
             app:layout_constraintEnd_toEndOf="@+id/convertedTimeBack"
             app:layout_constraintHorizontal_bias="0.508"
             app:layout_constraintStart_toStartOf="@+id/convertedTimeBack" />
+
+        <Button
+            android:id="@+id/currentTimeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="Time"
+            android:textColor="#000000"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/originalTimeBack"
+            app:layout_constraintEnd_toEndOf="@+id/originalTimeBack"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="@+id/originalTimeBack" />
+
+        <TextView
+            android:id="@+id/currentDiff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/currentTimeBack"
+            app:layout_constraintHorizontal_bias="0.119"
+            app:layout_constraintStart_toStartOf="@+id/currentTimeBack"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_location" />
+
+        <TextView
+            android:id="@+id/homeDiff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/homeTimeBack"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="@+id/homeTimeBack"
+            app:layout_constraintTop_toBottomOf="@+id/homeTimeZone" />
+
+        <ImageView
+            android:id="@+id/sleepAlert"
+            android:layout_width="62dp"
+            android:layout_height="58dp"
+            android:src="@android:drawable/ic_dialog_alert"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
