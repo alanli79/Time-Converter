@@ -9,7 +9,13 @@
     <string name="Settings">Settings</string>
     <string name="home_city">\n      Home City</string>
     <string name="home_time_zone">\n      Home Time Zone</string>
+    <string name="Home_time_zone">Home Time Zone</string>
+    <string name="converted_time">Converted Time</string>
+    <string name="converter">Converter</string>
+    <string name="title">Time Zone Converter</string>
+    <string name="current_time_zone">Current Time Zone</string>
     <string name="save_button">save</string>
     <string name="home_city_text_edit">Enter home city</string>
     <string name="baltimore">baltimore</string>
+    <string name="default_time">America/New_York     GMT -05:00</string>
 </resources>

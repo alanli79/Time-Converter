@@ -15,7 +15,7 @@
             android:id="@+id/Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Time Zone Converter"
+            android:text="@string/title"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="225dp"
-            android:text="Current Time Zone"
+            android:text="@string/current_time_zone"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/currentTimeBack"
             app:layout_constraintHorizontal_bias="0.505"
@@ -61,10 +61,10 @@
             android:id="@+id/homeTimeBack"
             android:layout_width="376dp"
             android:layout_height="125dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/rectangle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/originalTimeBack" />
 
@@ -92,12 +92,12 @@
             app:layout_constraintTop_toBottomOf="@+id/homeTimeBack" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/HomeTimeZoneWrapper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="237dp"
-            android:text="Home Time Zone"
+            android:text="@string/Home_time_zone"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/homeTimeBack"
             app:layout_constraintHorizontal_bias="0.68"
@@ -110,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="225dp"
-            android:text="Converted Text"
+            android:text="@string/converted_time"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/convertedTimeBack"
             app:layout_constraintStart_toStartOf="@+id/convertedTimeBack"
@@ -127,8 +127,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/convertedTimeBack"
             tools:src="@drawable/mh3ntdmbkve3ldv93gc8omou2b__1_"
-            android:contentDescription="Converter"
-            android:hint="Convert"/>
+            android:contentDescription="@string/converter"/>
 
         <ImageButton
             android:id="@+id/settingsButton"
@@ -138,8 +137,18 @@
             android:src="@drawable/settings_23_48"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:contentDescription="Settings"
-            android:hint="Settings"/>
+            android:contentDescription="@string/Settings"/>
+
+        <TextView
+            android:id="@+id/homeTimeZone"
+            android:layout_width="315dp"
+            android:layout_height="41dp"
+            android:layout_marginBottom="32dp"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/homeTimeBack"
+            app:layout_constraintEnd_toEndOf="@+id/homeTimeBack"
+            app:layout_constraintHorizontal_bias="0.512"
+            app:layout_constraintStart_toStartOf="@+id/homeTimeBack" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

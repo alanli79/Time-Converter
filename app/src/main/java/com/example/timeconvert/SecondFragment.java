@@ -56,13 +56,13 @@ public class SecondFragment extends Fragment {
         });
 
         ArrayList<String> locations = new ArrayList<>();
-        locations.add("America/New_York");
-        locations.add("America/Los_Angeles");
-        locations.add("Europe/Berlin");
-        locations.add("Europe/Istanbul");
-        locations.add("Asia/Singapore");
-        locations.add("Asia/Tokyo");
-        locations.add("Australia/Canberra");
+        locations.add("America/New_York     GMT -05:00");
+        locations.add("America/Los_Angeles  GMT -08:00");
+        locations.add("Europe/Berlin        GMT +01:00");
+        locations.add("Europe/Istanbul      GMT +02:00");
+        locations.add("Asia/Singapore       GMT +08:00");
+        locations.add("Asia/Tokyo           GMT +09:00");
+        locations.add("Australia/Canberra   GMT +10:00");
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, locations);
         adapter.setDropDownViewResource(android.R.layout.select_dialog_item);
@@ -90,7 +90,6 @@ public class SecondFragment extends Fragment {
         // Load previously saved text from SharedPreferences
         SharedPreferences preferences = requireActivity().getSharedPreferences(PREFS_NAME, 0);
         String home_city = preferences.getString(USER_HOME_CITY, "");
-        String home_time = preferences.getString(USER_HOME_TIME, "");
         if (home_city.isEmpty()) {
             home_city = "Baltimore";
         }
