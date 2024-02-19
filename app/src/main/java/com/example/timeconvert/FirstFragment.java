@@ -2,8 +2,6 @@ package com.example.timeconvert;
 
 import android.app.TimePickerDialog;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,9 +21,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 import androidx.navigation.fragment.NavHostFragment;
-
 import com.example.timeconvert.databinding.FragmentFirstBinding;
-
 import java.util.ArrayList;
 import android.os.Handler;
 
@@ -67,18 +62,6 @@ public class FirstFragment extends Fragment {
         currGMTDiff = view.findViewById(R.id.currentDiff);
         homGMTDiff = view.findViewById(R.id.homeDiff);
         spinner = view.findViewById(R.id.spinner_location);
-        View timeInputView = getLayoutInflater().inflate(R.layout.manual_time_input, null);
-        PopupWindow timeInputWindow = new PopupWindow(
-                timeInputView,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-        );
-
-        // Set background drawable to allow dismissal when clicking outside
-        timeInputWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        // Set the animation style
-        timeInputWindow.setAnimationStyle(android.R.style.Animation_Dialog);
 
         // Set interval for clock update
         startUpdatingButton();
@@ -90,7 +73,7 @@ public class FirstFragment extends Fragment {
         TextView homeView = view.findViewById(R.id.homeTimeZone);
         if (homeTime.isEmpty()) {
             spinner.setSelection(1);
-            homeTime = "America/New_York";
+            homeTime = "America/Los_Angeles";
         }
         homeView.setText(homeTime);
 
@@ -123,12 +106,6 @@ public class FirstFragment extends Fragment {
         spinner.setAdapter(adapter);
         //initialize spinner to preselect America/New_York
         spinner.setSelection(0);
-
-
-        //check whether the timezones are the same
-        if (homeTime.equals(spinner.getSelectedItem().toString())) {
-            Toast.makeText(getContext(), "Identical timezones!", Toast.LENGTH_SHORT).show();
-        }
 
         // Implement the button
         currentTimeButton.setOnClickListener(this::popTimePicker);
@@ -179,6 +156,10 @@ public class FirstFragment extends Fragment {
     private void convertTime() {
         SharedPreferences preferences = requireActivity().getSharedPreferences(PREFS_NAME, 0);
         String homeTime = preferences.getString(USER_HOME_TIME, "");
+        //default is LA
+        if (homeTime.isEmpty()) {
+            homeTime = "America/Los_Angeles";
+        }
 
         // Get timezone data
         String selectedTimeZone = spinner.getSelectedItem().toString();
