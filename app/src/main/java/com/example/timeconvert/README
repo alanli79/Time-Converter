@@ -1,0 +1,13 @@
+ali79, hzhao59
+
+1) If you customize and enhance the aesthetics of the user interface according to your taste (and best practices, of course), explain and justify any variations to the original design that you made. Note that the functionality of each activity and navigation between them must not be altered.
+We stuck to the design detailed by the design document, only making one minor change. Our change was that the current time was not just displayed on opening the app but also continuously updated while the actual android clock updated, updating the converted time as well. This addition was made for user convenience purposes. Also when the time is manually inputted this option stops in favor of the manual input.
+
+2) Does it make sense to have multiple activities for this simple version of the app? Are there any design changes would you suggest with respect to the purpose of each activity and navigation between views?
+It doesn't really make sense since the main purpose of this app is to make a quick conversion to check the time. Too many things to do or too many screens will make things too complicated and distract/confuse the user from the main purpose of the app. We would add an analog clock feature instead of just digital on the home screen and in terms of switching screens, we suggest that the less the better.
+
+3) How did you test whether the app displayed the correct results for each combination?
+We manually created every combination of timezones and used an online timezone conversion calculator to check. We also checked the edge cases between switching from AM to PM, switching to exactly 12 AM and making sure it isn't 00, testing conversions between the same timezones, just to name a few. Overall we took a very rigorous and brute force approach to this.
+
+4) What was most challenging or frustrating in doing this assignment?
+We encountered two major difficulties, during this implementation. First, it was getting all the spinners to work, but after a lot of trial and error as well as google research, we managed to implement them. Another problem was with getting the GMT trackers to line up with the timezones, we solved this using a hashmap that's key was the timezone and it returned the GMT time difference.
