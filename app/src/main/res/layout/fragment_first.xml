@@ -26,10 +26,9 @@
             android:id="@+id/currentTimeBack"
             android:layout_width="376dp"
             android:layout_height="125dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:background="@drawable/rectangle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Title" />
 
@@ -50,10 +49,9 @@
             android:id="@+id/originalTimeBack"
             android:layout_width="376dp"
             android:layout_height="90dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="4dp"
             android:background="@drawable/rectangle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/currentTimeBack" />
 
@@ -64,7 +62,6 @@
             android:layout_marginTop="12dp"
             android:background="@drawable/rectangle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/originalTimeBack" />
 
@@ -84,10 +81,9 @@
             android:id="@+id/convertedTimeBack"
             android:layout_width="376dp"
             android:layout_height="90dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/rectangle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/homeTimeBack" />
 
@@ -146,9 +142,9 @@
             android:layout_height="51dp"
             android:layout_marginTop="44dp"
             android:background="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/currentTimeBack"
             app:layout_constraintHorizontal_bias="0.583"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/currentTimeBack"
             app:layout_constraintTop_toTopOf="@+id/currentTimeBack" />
 
         <TextView
