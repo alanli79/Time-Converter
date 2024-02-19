@@ -142,8 +142,8 @@
 
         <Spinner
             android:id="@+id/spinner_location"
-            android:layout_width="315dp"
-            android:layout_height="41dp"
+            android:layout_width="334dp"
+            android:layout_height="42dp"
             android:layout_marginTop="44dp"
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"

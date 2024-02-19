@@ -42,7 +42,7 @@ public class SecondFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        spinner = getView().findViewById(R.id.spinner_location);
+        spinner = view.findViewById(R.id.spinner_location);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -67,9 +67,9 @@ public class SecondFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.select_dialog_item);
         spinner.setAdapter(adapter);
 
-        Button saveButton = getView().findViewById(R.id.save_button);
-        userInputEditText = getView().findViewById(R.id.home_city_input);
-
+        Button saveButton = view.findViewById(R.id.save_button);
+        // Edit text for home city
+        userInputEditText = view.findViewById(R.id.home_city_input);
 
         loadUserText();
 
@@ -93,6 +93,34 @@ public class SecondFragment extends Fragment {
             home_city = "Baltimore";
         }
         userInputEditText.setText(home_city);
+        String home_time = preferences.getString(USER_HOME_TIME, "");
+        if (home_time.isEmpty()) {
+            home_time = "America/Los_Angeles";
+        }
+        switch (home_time) {
+            case "America/New_York":
+                spinner.setSelection(0);
+                break;
+            case "America/Los_Angeles":
+                spinner.setSelection(1);
+                break;
+            case "Europe/Berlin":
+                spinner.setSelection(2);
+                break;
+            case "Europe/Istanbul":
+                spinner.setSelection(3);
+                break;
+            case "Asia/Singapore":
+                spinner.setSelection(4);
+                break;
+            case "Asia/Tokyo":
+                spinner.setSelection(5);
+                break;
+            case "Australia/Canberra":
+                spinner.setSelection(6);
+                break;
+        }
+
     }
 
     private void saveUserData() {
