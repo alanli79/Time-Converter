@@ -79,12 +79,29 @@ public class FirstFragment extends Fragment {
 
         // Set the animation style
         timeInputWindow.setAnimationStyle(android.R.style.Animation_Dialog);
+
+        // Set interval for clock update
         startUpdatingButton();
+
+        // Set view for home timezone
+        SharedPreferences preferences = requireActivity().getSharedPreferences(PREFS_NAME, 0);
+        String homeTime = preferences.getString(USER_HOME_TIME, "");
+        // Display the generated text in a TextView or any other UI element
+        TextView homeView = view.findViewById(R.id.homeTimeZone);
+        if (homeTime.isEmpty()) {
+            spinner.setSelection(1);
+            homeTime = "America/New_York";
+        }
+        homeView.setText(homeTime);
+
+        String finalHomeTime = homeTime;
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getContext(), "Selected Item: " + item, Toast.LENGTH_SHORT).show();
+                if (item.equals(finalHomeTime)) {
+                    Toast.makeText(getContext(), "Identical timezones!", Toast.LENGTH_SHORT).show();
+                }
                 convertTime();
             }
             @Override
@@ -107,19 +124,14 @@ public class FirstFragment extends Fragment {
         //initialize spinner to preselect America/New_York
         spinner.setSelection(0);
 
-        SharedPreferences preferences = requireActivity().getSharedPreferences(PREFS_NAME, 0);
-        String homeTime = preferences.getString(USER_HOME_TIME, "");
 
-        // Display the generated text in a TextView or any other UI element
-        TextView homeView = view.findViewById(R.id.homeTimeZone);
-        if (homeTime.isEmpty()) {
-            spinner.setSelection(1);
-            homeTime = "America/New_York";
+        //check whether the timezones are the same
+        if (homeTime.equals(spinner.getSelectedItem().toString())) {
+            Toast.makeText(getContext(), "Identical timezones!", Toast.LENGTH_SHORT).show();
         }
-        homeView.setText(homeTime);
+
+        // Implement the button
         currentTimeButton.setOnClickListener(this::popTimePicker);
-
-
         binding.settingsButton.setOnClickListener(view1 -> NavHostFragment.findNavController(FirstFragment.this)
                 .navigate(R.id.action_FirstFragment_to_SecondFragment));
 
