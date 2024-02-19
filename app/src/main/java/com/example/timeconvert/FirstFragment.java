@@ -1,14 +1,10 @@
 package com.example.timeconvert;
 
-import static android.content.ContentValues.TAG;
-
 import android.app.TimePickerDialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +15,7 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import java.util.Calendar;
@@ -54,7 +49,7 @@ public class FirstFragment extends Fragment {
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
 
@@ -90,7 +85,7 @@ public class FirstFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
                 Toast.makeText(getContext(), "Selected Item: " + item, Toast.LENGTH_SHORT).show();
-                convertTime1();
+                convertTime();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -122,42 +117,24 @@ public class FirstFragment extends Fragment {
             homeTime = "America/New_York";
         }
         homeView.setText(homeTime);
-        currentTimeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popTimePicker(v);
-            }
-        });
+        currentTimeButton.setOnClickListener(this::popTimePicker);
 
 
-        binding.settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
-            }
-        });
+        binding.settingsButton.setOnClickListener(view1 -> NavHostFragment.findNavController(FirstFragment.this)
+                .navigate(R.id.action_FirstFragment_to_SecondFragment));
 
-        binding.convertButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                convertTime1();
-            }
-        });
-        convertTime1();
+        binding.convertButton.setOnClickListener(v -> convertTime());
+        convertTime();
     }
 
     public void popTimePicker(View view) {
-        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker tp, int sel_hour, int sel_minute) {
-                hour = sel_hour;
-                minute = sel_minute;
-                int display_hour = (hour >= 12) ? hour - 12 : hour;
-                String AM_PM = (hour >= 12) ? "PM" : "AM";
-                currentTimeButton.setText(String.format(Locale.getDefault(), String.format(Locale.getDefault(), "%02d : %02d %s", display_hour, minute, AM_PM)));
-                custom_mode = true;
-            }
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = (tp, sel_hour, sel_minute) -> {
+            hour = sel_hour;
+            minute = sel_minute;
+            int display_hour = (hour >= 12) ? hour - 12 : hour;
+            String AM_PM = (hour >= 12) ? "PM" : "AM";
+            currentTimeButton.setText(String.format(Locale.getDefault(), String.format(Locale.getDefault(), "%02d : %02d %s", display_hour, minute, AM_PM)));
+            custom_mode = true;
         };
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(requireContext(), onTimeSetListener, hour, minute, false);
@@ -172,7 +149,7 @@ public class FirstFragment extends Fragment {
             @Override
             public void run() {
                 if (!custom_mode) {
-                    convertTime1();
+                    convertTime();
                     // Schedule the next update after the defined interval
                     handler.postDelayed(this, UPDATE_INTERVAL);
                 }
@@ -187,20 +164,16 @@ public class FirstFragment extends Fragment {
         }
     }
 
-    private void convertTime1() {
+    private void convertTime() {
         SharedPreferences preferences = requireActivity().getSharedPreferences(PREFS_NAME, 0);
         String homeTime = preferences.getString(USER_HOME_TIME, "");
-        //initialize time zone to be america new york
-        if (homeTime.isEmpty()) {
-            homeTime = "America/New_York";
-        }
 
-        int conversionDifference;
+        // Get timezone data
         String selectedTimeZone = spinner.getSelectedItem().toString();
         Integer sel_offset = timeZoneOffsets.get(selectedTimeZone);
         Integer home_offset = timeZoneOffsets.get(homeTime);
 
-        conversionDifference = home_offset - sel_offset;
+        int conversionDifference = home_offset - sel_offset;
 
         // Create a calendar instance for the selected time zone
         Calendar currCalendar = Calendar.getInstance(TimeZone.getTimeZone(selectedTimeZone));
@@ -215,6 +188,8 @@ public class FirstFragment extends Fragment {
             homHour -= 24;
         }
 
+        //LA 23
+
         ImageView sleepAlert = getView().findViewById(R.id.sleepAlert);
         // Check if the current hour falls between 7 and 23
         if (homHour >= 7 && homHour <= 23) {
@@ -227,8 +202,8 @@ public class FirstFragment extends Fragment {
         String homAmOrPm = (custom_mode) ? ((homHour >= 12 && homHour <= 23) ? "PM" : "AM") : (homCalendar.get(Calendar.AM_PM) == Calendar.AM) ? "AM" : "PM";
 
         //convert to 12 hour time
-        homHour = (homHour % 12 == 0) ? 12 : 0;
-        currHour = (currHour % 12 == 0) ? 12 : 0;
+        homHour = (homHour % 12 == 0) ? 12 : homHour % 12;
+        currHour = (currHour % 12 == 0) ? 12 : currHour % 12;
 
         // Format the time string
         String currTime = String.format(Locale.getDefault(), "%02d : %02d %s", currHour, currMinute, currAmOrPm);

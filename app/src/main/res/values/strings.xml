@@ -18,5 +18,6 @@
     <string name="save_button">save</string>
     <string name="home_city_text_edit">Enter home city</string>
     <string name="baltimore">baltimore</string>
-    <string name="default_time">America/New_York     GMT -05:00</string>
+    <string name="image">image</string>
+    <string name="time_selector">Select Time</string>
 </resources>

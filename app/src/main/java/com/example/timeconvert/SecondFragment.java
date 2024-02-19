@@ -31,7 +31,7 @@ public class SecondFragment extends Fragment {
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
         binding = FragmentSecondBinding.inflate(inflater, container, false);
@@ -73,13 +73,10 @@ public class SecondFragment extends Fragment {
 
         loadUserText();
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveUserData();
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
-            }
+        saveButton.setOnClickListener(v -> {
+            saveUserData();
+            NavHostFragment.findNavController(SecondFragment.this)
+                    .navigate(R.id.action_SecondFragment_to_FirstFragment);
         });
 
 
@@ -120,7 +117,6 @@ public class SecondFragment extends Fragment {
                 spinner.setSelection(6);
                 break;
         }
-
     }
 
     private void saveUserData() {
